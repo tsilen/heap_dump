@@ -1644,16 +1644,6 @@ void heapdump_dump(const char* filename){
   flush_yajl(ctx);
   // fprintf(ctx->file, "\n");
 
-  /* mark protected global variables */
-  log("global_list\n");
-  yg_cstring("globals");
-  yg_array();
-  for (list = GET_THREAD()->vm->global_List; list; list = list->next) {
-    VALUE v = *list->varptr;
-    yg_id(v);
-  }
-  yg_array_end();
-
   //TODO: rb_global_tbl
 #ifdef HAVE_RB_GLOBAL_TBL
   rb_global_tbl = rb_get_global_tbl();
