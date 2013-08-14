@@ -1400,9 +1400,9 @@ static void dump_thread(const rb_thread_t* th, walk_ctx_t *ctx){
           line_no = rb_vm_get_sourceline(cfp);
           //TODO: dry?
           #ifdef HAVE_RB_ISEQ_T_FILENAME
-          ygh_rstring("file", iseq->filename);
+            ygh_rstring("file", iseq->filename);
           #else
-          ygh_rstring("file", iseq->location.path);
+            if(iseq->location.path) ygh_rstring("file", iseq->location.path);
           #endif
           ygh_int("line_no",line_no);
       }
